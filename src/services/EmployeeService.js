@@ -1,7 +1,8 @@
 import axios from 'axios'
 
 const EMPLOYEE_BASE_REST_API_URL='https://employeemanagementsystembackend-production-aaf5.up.railway.app/api/v1/employees'
-
+// https://employeemanagementsystembackend-production-aaf5.up.railway.app
+// http://localhost:8080
 class EmployeeService{
 
     getAllEmployees(){

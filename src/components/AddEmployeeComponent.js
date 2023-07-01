@@ -8,13 +8,14 @@ const AddEmployeeComponent = () => {
     const [firstName,setfirstName]=useState("")
     const [lastName,setlastName]=useState("")
     const [emailId,setemail]=useState("")
+    const [phoneNo,setphone]=useState("")
     const {id}=useParams()
 
 
     const saveEmployee=(e)=>{
         e.preventDefault();
 
-        const employee={firstName,lastName,emailId}
+        const employee={firstName,lastName,emailId,phoneNo}
         if(id){
             EmployeeService.updateEmployee(id,employee).then((response)=>{
            
@@ -43,6 +44,7 @@ const AddEmployeeComponent = () => {
                 setfirstName(response.data.firstName)
                 setlastName(response.data.lastName)
                 setemail(response.data.emailId)
+                setphone(response.data.phoneNo)
             }).catch(error => {
                 console.log(error)
             })
@@ -106,6 +108,16 @@ const AddEmployeeComponent = () => {
                                 className='form-control'
                                 value={emailId}
                                 onChange={(e)=>setemail(e.target.value)}
+                            />
+                        </div>
+                        <div className='form-group mb-2'>
+                            <label className='form-label'>Phone  :</label>
+                            <input
+                                type='text'
+                                placeholder='Enter phone '
+                                className='form-control'
+                                value={phoneNo}
+                                onChange={(e)=>setphone(e.target.value)}
                             />
                         </div>
 

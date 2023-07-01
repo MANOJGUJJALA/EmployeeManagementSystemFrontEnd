@@ -7,3 +7,9 @@
   text-align: center;
   color: white;
 }
+
+.searchBar{
+  margin-left: 700px;
+  border: none;
+  border-bottom: 2px solid;
+}
