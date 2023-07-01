@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const EMPLOYEE_BASE_REST_API_URL='https://demo-production-5997.up.railway.app/api/v1/employees'
+const EMPLOYEE_BASE_REST_API_URL='https://employeemanagementsystembackend-production-aaf5.up.railway.app/api/v1/employees'
 
 class EmployeeService{
 
