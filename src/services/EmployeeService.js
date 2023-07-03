@@ -1,6 +1,7 @@
 import axios from 'axios'
 
-const EMPLOYEE_BASE_REST_API_URL='https://employeemanagementsystembackend-production-aaf5.up.railway.app/api/v1/employees'
+const EMPLOYEE_BASE_REST_API_URL='http://localhost:8080/api/v1/employees'
+const REGISTER_BASE_REST_API_URL='http://localhost:8080/api/v1/registers'
 // https://employeemanagementsystembackend-production-aaf5.up.railway.app
 // http://localhost:8080
 class EmployeeService{
@@ -27,6 +28,10 @@ class EmployeeService{
 
     deleteEmployee(employeeId){
         return axios.delete(EMPLOYEE_BASE_REST_API_URL+'/'+employeeId)
+    }
+
+    addRegsiteredUser(registeredUser){
+        return axios.post(REGISTER_BASE_REST_API_URL,registeredUser)
     }
 }
 

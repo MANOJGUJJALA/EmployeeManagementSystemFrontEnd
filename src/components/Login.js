@@ -1,0 +1,59 @@
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
+// import { login } from './actions/authActions';
+import '../CSS/LoginPage.css';
+
+const LoginPage = () => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // login(username, password);
+    if (!username || !password ) {
+        setError('Please fill in all fields');
+      } 
+      else{
+        setError('')
+      }
+  };
+
+  return (
+    <div className="login-page">
+      <div className="" />
+      <div className="login-form">
+        <h2>Login</h2>
+        {error && <p className="error-message">{error}</p>}
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="username">Username</label>
+            <input
+              type="text"
+              id="username"
+              value={username}
+              onChange={e=>setUsername(e.target.value)}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              value={password}
+              onChange={e=>setPassword(e.target.value)}
+            />
+          </div>
+          <button type="submit">Login</button>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+// const mapDispatchToProps = {
+//   login,
+// };
+
+export default LoginPage;

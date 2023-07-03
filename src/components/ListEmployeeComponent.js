@@ -50,6 +50,12 @@ const ListEmployeeComponent = () => {
          onChange={(event)=>setSearch(event.target.value)}/> 
          <span class="icon">🔍</span>
         </div>
+
+      <div className='outer-wrapper'> 
+          <div className='table-wrapper'>
+
+         
+
         <table className='table table-bordered table-striped'>
         <thead>
                     <th> Employee Id </th>
@@ -74,6 +80,9 @@ const ListEmployeeComponent = () => {
                     else if(employee.emailId.toLowerCase().includes(search.toLowerCase())){
                       return employee
                   }
+                  else if(employee.phoneNo.toLowerCase().includes(search.toLowerCase())){
+                    return employee
+                }
                   })
                     .map(employee=>
                     
@@ -97,6 +106,8 @@ const ListEmployeeComponent = () => {
             </tbody>
 
         </table>
+        </div>
+      </div>
       
     </div>
   )
