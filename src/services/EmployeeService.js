@@ -6,14 +6,8 @@ const REGISTER_BASE_REST_API_URL='http://localhost:8080/api/v1/registers'
 // http://localhost:8080
 class EmployeeService{
 
-    getAllEmployees(){
+    getAllEmployees(currentUserId){
         return axios.get(EMPLOYEE_BASE_REST_API_URL);
-    }
-
-    addEmployee(employee){
-
-       return axios.post(EMPLOYEE_BASE_REST_API_URL,employee)
-        
     }
 
     getEmployeeById(employeeid){
@@ -33,6 +27,17 @@ class EmployeeService{
     addRegsiteredUser(registeredUser){
         return axios.post(REGISTER_BASE_REST_API_URL,registeredUser)
     }
+
+    validateLoggedInuser(user){
+        return axios.post(REGISTER_BASE_REST_API_URL+'/user',user)
+    }
+
+    addEmployee(employee){
+
+        return axios.post(REGISTER_BASE_REST_API_URL+'addemployee',employee)
+         
+     }
+    
 }
 
 export default new EmployeeService();

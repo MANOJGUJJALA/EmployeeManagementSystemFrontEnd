@@ -1,32 +1,35 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
-// import { register } from './actions/authActions';
 import { useNavigate } from "react-router-dom";
 import '../CSS/Registration.css';
 import { Link } from 'react-router-dom';
 import EmployeeService from '../services/EmployeeService';
 
 const RegistrationPage = () => {
-  const [user_name, setUsername] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [email_id, setEmail] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
   
+  
 
+  
   const handleSubmit = (e) => {
+
+
     e.preventDefault();
     // register(username, password);
-    if (!user_name || !password || !confirmPassword ||!email_id) {
+    if (!username || !password || !confirmPassword ||!email_id) {
       setError('Please fill in all fields');
     } else if (password !== confirmPassword) {
       setError('Passwords do not match');
     } 
     else{
       setError('')
-      const user={user_name,password,confirmPassword,email_id}
+      const user={username,password,confirmPassword,email_id}
       // console.log("before ",user);
+    
       EmployeeService.addRegsiteredUser(user).then((response)=>{
           console.log("success registerred!!",response.data);
           navigate("/login");
@@ -41,7 +44,7 @@ const RegistrationPage = () => {
     <div className="registration-page">
       <div className="background-image" />
       <div className="registration-form">
-        <h2>Registration</h2>
+       <center> <h2>Registration</h2></center>
         {error && <p className="error-message">{error}</p>}
         <form onSubmit={handleSubmit}>
           <div className="form-group">
@@ -49,7 +52,7 @@ const RegistrationPage = () => {
             <input
               type="text"
               id="username"
-              value={user_name}
+              value={username}
               onChange={e=>setUsername(e.target.value)}
             />
           </div>

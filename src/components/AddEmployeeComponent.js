@@ -2,7 +2,8 @@
 import React, { useState,useEffect } from 'react'
 import EmployeeService from '../services/EmployeeService'
 import { Link, useParams } from 'react-router-dom'
-
+import { useNavigate } from "react-router-dom";
+import { useSelector } from 'react-redux';
 
 const AddEmployeeComponent = () => {
     const [firstName,setfirstName]=useState("")
@@ -10,15 +11,17 @@ const AddEmployeeComponent = () => {
     const [emailId,setemail]=useState("")
     const [phoneNo,setphone]=useState("")
     const {id}=useParams()
-
+    const register=useSelector(state=>state.loggedInUser)
+    const navigate = useNavigate();
 
     const saveEmployee=(e)=>{
         e.preventDefault();
 
-        const employee={firstName,lastName,emailId,phoneNo}
+        const employee={firstName,lastName,emailId,phoneNo,register}
+        console.log("----",firstName,lastName,emailId,phoneNo,register.id);
         if(id){
             EmployeeService.updateEmployee(id,employee).then((response)=>{
-           
+          
             })
             .catch((er)=>{
                 console.log(er);
@@ -26,7 +29,7 @@ const AddEmployeeComponent = () => {
         }
         else{
             EmployeeService.addEmployee(employee).then((response)=>{
-             
+                navigate("/employees")
             })
             .catch(err=>{
                 console.log(err);
@@ -73,11 +76,11 @@ const AddEmployeeComponent = () => {
     <div className='container'>
         <div className='row'>
 
-            <div className='card col-md-6 offset-md-3 offset-md-3'>
+            <div className='card col-md-6 offset-md-3 offset-md-3 '>
                 {title()}
                 <div className='card-body'>
 
-                    <form>
+                   
                         <div className='form-group mb-2'>
                             <label className='form-label'>First Name :</label>
                             <input
@@ -123,8 +126,8 @@ const AddEmployeeComponent = () => {
 
                         <button className='btn btn-success' style={{marginRight:"10px"}} onClick={(e)=>saveEmployee(e)}>Save </button>
 
-                        <Link to="/" className='btn btn-danger'>cancel</Link>
-                    </form>
+                        <Link to="/employees" className='btn btn-danger'>cancel</Link>
+                   
 
                 </div>
 

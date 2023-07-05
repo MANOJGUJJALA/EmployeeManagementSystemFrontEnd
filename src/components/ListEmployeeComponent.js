@@ -2,19 +2,27 @@
 import React, { useEffect, useState } from 'react'
 import EmployeeService from '../services/EmployeeService';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const ListEmployeeComponent = () => {
   const [employees,setemployees]=useState([]);
   const [search,setSearch]=useState('')
+ 
+
+  const loggeduser=useSelector(state=>state.loggedInUser)
 
   useEffect(()=>{
+    if(loggeduser){
 
-    getAllEmployees()
+      getAllEmployees(loggeduser.id)
+    }
+
 
   },[])
 
-  const getAllEmployees=()=>{
-    EmployeeService.getAllEmployees().then((Response)=>{
+  const getAllEmployees=(currentUserId)=>{
+    EmployeeService.getAllEmployees(currentUserId).then((Response)=>{
+      
         setemployees(Response.data)
         
     }).catch((er)=>{
@@ -38,7 +46,10 @@ const ListEmployeeComponent = () => {
 
 
   return (
+    
     <div className='container'>
+
+
         <h2 className='text-center'>List Employees</h2>
         <div className='search'>
         <Link to="/add-employee" className='btn btn-primary mb-2'>Add Employee</Link>
@@ -47,7 +58,7 @@ const ListEmployeeComponent = () => {
          placeholder='search here..'
           className='searchBar'
          value={search}
-         onChange={(event)=>setSearch(event.target.value)}/> 
+         onChange={(event)=>setSearch(event.target.value.toString())}/> 
          <span class="icon">🔍</span>
         </div>
 
@@ -67,20 +78,21 @@ const ListEmployeeComponent = () => {
                 </thead>
             <tbody>
                 {
-                  employees.filter((employee)=>{
+            employees.filter((employee)=>{
+                // console.log("------",employee.phoneNo.toString(),employee.phoneNo.toLowerCase());
                       if(search===""){
                         return employee
                       }
-                      else if(employee.firstName.toLowerCase().includes(search.toLowerCase())){
+                      else if(employee.firstName?.toLowerCase().includes(search.toLowerCase())){
                           return employee
                       }
-                      else if(employee.lastName.toLowerCase().includes(search.toLowerCase())){
+                      else if(employee.lastName?.toLowerCase().includes(search.toLowerCase())){
                         return employee
                     }
-                    else if(employee.emailId.toLowerCase().includes(search.toLowerCase())){
+                    else if(employee.emailId?.toLowerCase().includes(search.toLowerCase())){
                       return employee
                   }
-                  else if(employee.phoneNo.toLowerCase().includes(search.toLowerCase())){
+                  else if(employee.phoneNo?.toString().includes(search.toLowerCase())){
                     return employee
                 }
                   })

@@ -8,9 +8,13 @@ import {BrowserRouter as Router,Route,Routes } from 'react-router-dom'
 import Login from './components/Login';
 import RegistrationPage from './components/Register';
 
+
 function App() {
+
   return (
     <div >
+
+
       <Router>
 
       <HeaderComponent/>
