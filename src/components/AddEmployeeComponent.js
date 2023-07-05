@@ -21,7 +21,7 @@ const AddEmployeeComponent = () => {
         console.log("----",firstName,lastName,emailId,phoneNo,register.id);
         if(id){
             EmployeeService.updateEmployee(id,employee).then((response)=>{
-          
+          console.log("update success");
             })
             .catch((er)=>{
                 console.log(er);

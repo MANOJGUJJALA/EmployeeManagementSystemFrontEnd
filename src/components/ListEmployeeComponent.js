@@ -36,7 +36,7 @@ const ListEmployeeComponent = () => {
 
     EmployeeService.deleteEmployee(employeeId).then((response)=>{
 
-            getAllEmployees()
+            getAllEmployees(loggeduser.id)
 
     })
     .catch((err)=>{
