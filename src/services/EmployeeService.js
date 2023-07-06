@@ -1,7 +1,8 @@
 import axios from 'axios'
 
-const EMPLOYEE_BASE_REST_API_URL='https://employeemanagementsystembackend-production-aaf5.up.railway.app/api/v1/employees'
-const REGISTER_BASE_REST_API_URL='https://employeemanagementsystembackend-production-aaf5.up.railway.app/api/v1/registers'
+const EMPLOYEE_BASE_REST_API_URL='http://ec2-16-171-133-216.eu-north-1.compute.amazonaws.com:8080/api/v1/employees'
+const REGISTER_BASE_REST_API_URL='http://ec2-16-171-133-216.eu-north-1.compute.amazonaws.com:8080/api/v1/registers'
+// http://ec2-16-171-133-216.eu-north-1.compute.amazonaws.com:8080/
 // https://employeemanagementsystembackend-production-aaf5.up.railway.app
 // http://localhost:8080
 class EmployeeService{

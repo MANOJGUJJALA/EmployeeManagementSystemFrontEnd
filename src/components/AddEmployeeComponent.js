@@ -22,6 +22,7 @@ const AddEmployeeComponent = () => {
         if(id){
             EmployeeService.updateEmployee(id,employee).then((response)=>{
           console.log("update success");
+          navigate("/employees")
             })
             .catch((er)=>{
                 console.log(er);
