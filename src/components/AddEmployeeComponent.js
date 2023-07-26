@@ -61,7 +61,7 @@ const AddEmployeeComponent = () => {
                 setTimeout(() => {
                     
                     navigate("/employees")
-                }, 3000);
+                }, 2000);
             })
                 .catch((er) => {
                     console.log(er);
@@ -74,7 +74,7 @@ const AddEmployeeComponent = () => {
                 setTimeout(() => {
                     
                     navigate("/employees")
-                }, 3000);
+                }, 2000);
             })
                 .catch(err => {
                     console.log(err);
@@ -172,7 +172,7 @@ const AddEmployeeComponent = () => {
                             <button className='btn btn-success' style={{ marginRight: "10px" }} onClick={(e) => saveEmployee(e)}>Save </button>
 
                             <Link to="/employees" className='btn btn-danger'>cancel</Link>
-                            <Snackbar anchorOrigin={{ vertical, horizontal }} open={open} autoHideDuration={3000} onClose={handleClose}>
+                            <Snackbar anchorOrigin={{ vertical, horizontal }} open={open} autoHideDuration={2000} onClose={handleClose}>
                                 <Alert onClose={handleClose} severity={severityy} sx={{ width: '100%' }}>
                                     {message}
                                 </Alert>
