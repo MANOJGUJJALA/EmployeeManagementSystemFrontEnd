@@ -3,6 +3,10 @@ import { useNavigate } from "react-router-dom";
 import '../CSS/Registration.css';
 import { Link } from 'react-router-dom';
 import EmployeeService from '../services/EmployeeService';
+import { Snackbar } from '@mui/material';
+
+import MuiAlert from '@mui/material/Alert';
+
 
 const RegistrationPage = () => {
   const [username, setUsername] = useState('');
@@ -11,10 +15,36 @@ const RegistrationPage = () => {
   const [email_id, setEmail] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const [message, setMessage] = useState('Success Registered');
+  const [severityy, setSeverity] = useState('success');
+  const [open, setOpen] = React.useState(false);
+  const vertical="bottom";
+  const horizontal="center";
   
+
+  const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
   
 
   
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  
+  const SnackBarHandle=(message,severity)=>{
+    
+    setOpen(true);
+    setMessage(message)
+    setSeverity(severity)
+    
+  }
   const handleSubmit = (e) => {
 
 
@@ -31,8 +61,13 @@ const RegistrationPage = () => {
       // console.log("before ",user);
     
       EmployeeService.addRegsiteredUser(user).then((response)=>{
-          console.log("success registerred!!",response.data);
-          navigate("/login");
+          // console.log("success registerred!!",response.data);
+          
+          SnackBarHandle("SuccessFully Registered !!!!","success")
+          setTimeout(() => {
+            
+            navigate("/login");
+          }, 3000);
       })
       .catch((e)=>{
         console.log(e);
@@ -92,6 +127,13 @@ const RegistrationPage = () => {
               onChange={e=>setphoneNumber(e.target.value)}
             />
           </div> */}
+
+
+          <Snackbar anchorOrigin={{ vertical, horizontal }} open={open} autoHideDuration={3000} onClose={handleClose}>
+          <Alert onClose={handleClose} severity={severityy} sx={{ width: '100%' }}>
+            {message}
+            </Alert>
+          </Snackbar>
           <button type="submit">Register</button>
           <span>already signed in   </span>
           <Link to={`/login`}>Login</Link>
