@@ -3,13 +3,15 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 import '../CSS/LoginPage.css';
 import EmployeeService from '../services/EmployeeService';
-
+import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
- 
+  const [visible, setVisible] = useState(true)
+
   const dispatch=useDispatch();
   const navigate = useNavigate();
 
@@ -62,17 +64,27 @@ const LoginPage = () => {
               type="text"
               id="username"
               value={username}
+              className='form-control'
               onChange={e=>setUsername(e.target.value)}
             />
           </div>
-          <div className="form-group">
+          <div className="form-group passwordIcon">
             <label htmlFor="password">Password</label>
+            <div className='flex  justify-between items-center '>
+
             <input
-              type="password"
+              type={visible ? "text" : "password"}
               id="password"
               value={password}
+              className='form-control'
               onChange={e=>setPassword(e.target.value)}
-            />
+              />
+              <span className='eyeIconLogin' onClick={()=>setVisible(!visible)}>
+                {visible ? <RemoveRedEyeIcon /> : <VisibilityOffIcon />}
+
+
+              </span>
+              </div>
           </div>
           <button type="submit">Login</button>
         </form>

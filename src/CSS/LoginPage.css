@@ -73,3 +73,15 @@
     background-color: #0056b3;
   }
   
+  .eyeIconLogin{
+    position: absolute;
+    
+    top: 60%;
+    left: 82%;
+    padding-top: 2px;
+    font-weight: 600;
+  }
+  .passwordIcon{
+    
+    padding: 2px;
+  }
