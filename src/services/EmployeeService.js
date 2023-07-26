@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-const EMPLOYEE_BASE_REST_API_URL='http://localhost:8080/api/v1/employees'
-const REGISTER_BASE_REST_API_URL='http://localhost:8080/api/v1/registers'
+const EMPLOYEE_BASE_REST_API_URL='https://ems-backend-opr1.onrender.com/api/v1/employees'
+const REGISTER_BASE_REST_API_URL='https://ems-backend-opr1.onrender.com/api/v1/registers'
 // http://ec2-16-171-133-216.eu-north-1.compute.amazonaws.com:8080/
 // https://employeemanagementsystembackend-production-aaf5.up.railway.app
 // https://ems-backend-opr1.onrender.com
